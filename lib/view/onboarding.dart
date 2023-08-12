@@ -69,7 +69,7 @@ Future<dynamic> BottomSheet(BuildContext context, ) {
                     Navigator.pushReplacement(
                         context,
                         CupertinoPageRoute(
-                          builder: (context) => const HomeScreen(),
+                          builder: (context) =>  HomeScreen(),
                         ));
                   },
                   splashColor: Colors.amberAccent,
