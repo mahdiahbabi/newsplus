@@ -7,7 +7,7 @@ import 'package:newsplus/view/HomeScreen.dart';
 import '../gen/assets.gen.dart';
 
 class Onboarding extends StatelessWidget {
-   Onboarding({super.key});
+  const Onboarding({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class Onboarding extends StatelessWidget {
                 right: 90,
                 child: ElevatedButton(
                     onPressed: () {
-                      BottomSheet(context,);
+                      bottomSheet(context,);
                     },
                     child: const Text('lets go',)),
               ),
@@ -47,7 +47,7 @@ class Onboarding extends StatelessWidget {
   }
 }
 
-Future<dynamic> BottomSheet(BuildContext context, ) {
+Future<dynamic> bottomSheet(BuildContext context, ) {
     TextTheme theme = Theme.of(context).textTheme;
   
   return showModalBottomSheet(

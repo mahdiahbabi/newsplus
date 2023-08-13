@@ -38,11 +38,11 @@ class BreakingNewsModel{
     name =element["source"]["name"];
     author =element["author"] ?? 'Alex';
     title =element["title"];
-    description =element["description"];
-    url =element["url"];
-    urlToImage =element["urlToImage"];
+    description =element["description"] ?? 'dont hava description';
+    url =element["url"] ?? '';
+    urlToImage =element["urlToImage"] ?? 'https://static.digiato.com/digiato/2023/07/image-4-910x600.jpg';
     publishedAt =element["publishedAt"];
-    content =element["content"] ?? 'General';
+    content =element["content"] ?? 'dont hava description';
   }
 
 }

@@ -1,4 +1,5 @@
 
+// ignore_for_file: file_names
 
 class MyString {
   static const onbordingTitle = 'Get The Latest News And Updates';
