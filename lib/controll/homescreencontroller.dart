@@ -3,7 +3,6 @@
 import 'dart:developer';
 
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 import '../component/ApiConstant.dart';
 import '../model/newsmodel.dart';
