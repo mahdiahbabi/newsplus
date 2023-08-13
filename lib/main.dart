@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:newsplus/view/mainScreen.dart';
 
 import 'view/HomeScreen.dart';
 
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home:  HomeScreen(),
+      home:  MainScreen(),
     );
   }
 }

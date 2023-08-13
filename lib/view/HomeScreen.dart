@@ -1,11 +1,13 @@
 // ignore_for_file: must_be_immutable, invalid_use_of_protected_member
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:newsplus/component/MyString.dart';
+import 'package:newsplus/view/ArticleInfo.dart';
 import '../component/MyColors.dart';
 import '../controll/homescreencontroller.dart';
 
@@ -22,6 +24,7 @@ class HomeScreen extends StatelessWidget {
       () => homeScreenController.loading.value
           ? const SpinKitDualRing(color: Colors.amberAccent)
           : Scaffold(
+              
               appBar: AppBar(
                 title: const Text('mahdi'),
               ),
@@ -61,8 +64,12 @@ class HomeScreen extends StatelessWidget {
                           },
                         ),
                       ),
-                      seeMore(context, theme,
-                          seeMore: MyString.homePageHeath, catergortyindex: 1),
+                      seeMore(
+                          category: MyString.homePageHeath,
+                          context,
+                          theme,
+                          seeMore: MyString.homePageHeath,
+                          catergortyindex: 1),
                       SizedBox(
                         height: 300,
                         width: double.infinity,
@@ -87,7 +94,10 @@ class HomeScreen extends StatelessWidget {
                           },
                         ),
                       ),
-                      seeMore(context, theme,
+                      seeMore(
+                          category: MyString.homePageEducation,
+                          context,
+                          theme,
                           seeMore: MyString.homePageEducation,
                           catergortyindex: 2),
                       SizedBox(
@@ -102,7 +112,7 @@ class HomeScreen extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: homePageArticle(
                                 image: homeScreenController
-                                    .educationList.value[index].title!,
+                                    .educationList.value[index].urlToImage!,
                                 title: homeScreenController
                                     .educationList.value[index].title!,
                                 author: homeScreenController
@@ -114,7 +124,10 @@ class HomeScreen extends StatelessWidget {
                           },
                         ),
                       ),
-                      seeMore(context, theme,
+                      seeMore(
+                          category: MyString.homePageFashion,
+                          context,
+                          theme,
                           seeMore: MyString.homePageFashion,
                           catergortyindex: 3),
                       SizedBox(
@@ -140,8 +153,12 @@ class HomeScreen extends StatelessWidget {
                           },
                         ),
                       ),
-                      seeMore(context, theme,
-                          seeMore: MyString.homePageSport, catergortyindex: 5),
+                      seeMore(
+                          category: MyString.homePageSport,
+                          context,
+                          theme,
+                          seeMore: MyString.homePageSport,
+                          catergortyindex: 5),
                       SizedBox(
                         height: 300,
                         width: double.infinity,
@@ -174,13 +191,15 @@ class HomeScreen extends StatelessWidget {
   }
 
   Padding seeMore(BuildContext context, TextTheme theme,
-      {required String seeMore, required int catergortyindex}) {
+      {required String seeMore,
+      required int catergortyindex,
+      required String category}) {
     return Padding(
       padding: const EdgeInsets.only(left: 8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(MyString.homePageSport, style: theme.titleMedium),
+          Text(category, style: theme.titleMedium),
           TextButton(
               onPressed: () {
                 // switch (catergortyindex) {
@@ -235,8 +254,10 @@ class HomeScreen extends StatelessWidget {
           width: 250,
           placeholder: (context, url) =>
               const SpinKitFadingCircle(color: Colors.redAccent),
-          errorWidget: (context, url, error) =>
-              const Icon(Icons.image_not_supported_sharp,size: 50,),
+          errorWidget: (context, url, error) => const Icon(
+            Icons.image_not_supported_sharp,
+            size: 50,
+          ),
         ),
 
         Padding(

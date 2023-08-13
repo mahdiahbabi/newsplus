@@ -39,6 +39,7 @@ dependencies:
   dio: ^5.3.0
   get: ^4.6.5
   cached_network_image: ^3.2.3
+  curved_navigation_bar: ^1.0.3
 
 dev_dependencies:
   flutter_test:

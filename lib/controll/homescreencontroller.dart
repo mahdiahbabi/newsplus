@@ -9,7 +9,7 @@ import '../model/newsmodel.dart';
 import '../service/dioservice.dart';
 
 class HomeScreenController extends GetxController{
-
+var apiKey = "d5a39792b3fc4d13958a512fd480179c";
 RxList<BreakingNewsModel> breakingNewslist = RxList(); 
 RxList<BreakingNewsModel> educationList = RxList(); 
 RxList<BreakingNewsModel> healthList = RxList(); 
@@ -29,7 +29,7 @@ onInit(){
 
 getArticleHomePage()async{
  loading.value = true;
-var response = await DioService().getMethod(ApiConstant.baseapi);
+var response = await DioService().getMethod(ApiConstant.baseapi+apiKey);
 log(response.statusCode.toString());
 if(response.statusCode == 200){
   response.data["articles"].forEach((element){
@@ -39,7 +39,7 @@ if(response.statusCode == 200){
 }
 
 
-var responseedu = await DioService().getMethod(ApiConstant.articleEducation);
+var responseedu = await DioService().getMethod(ApiConstant.articleEducation+apiKey);
 log(responseedu.statusCode.toString());
 if(responseedu.statusCode == 200){
   responseedu.data["articles"].forEach((element){
@@ -47,7 +47,7 @@ if(responseedu.statusCode == 200){
     
   });
 }
-var responseHealth = await DioService().getMethod(ApiConstant.articleHealth);
+var responseHealth = await DioService().getMethod(ApiConstant.articleHealth+apiKey);
 log(responseHealth.statusCode.toString());
 if(responseHealth.statusCode == 200){
   responseHealth.data["articles"].forEach((element){
@@ -55,7 +55,7 @@ if(responseHealth.statusCode == 200){
     
   });
 }
-var responseEconomy = await DioService().getMethod(ApiConstant.articleEconomy);
+var responseEconomy = await DioService().getMethod(ApiConstant.articleEconomy+apiKey);
 log(responseEconomy.statusCode.toString());
 if(responseEconomy.statusCode == 200){
   responseEconomy.data["articles"].forEach((element){
@@ -63,7 +63,7 @@ if(responseEconomy.statusCode == 200){
     
   });
 }
-var responseBusiness = await DioService().getMethod(ApiConstant.articleBusiness);
+var responseBusiness = await DioService().getMethod(ApiConstant.articleBusiness+apiKey);
 log(responseBusiness.statusCode.toString());
 if(responseBusiness.statusCode == 200){
   responseBusiness.data["articles"].forEach((element){
@@ -71,7 +71,7 @@ if(responseBusiness.statusCode == 200){
     
   });
 }
-var responseFashion = await DioService().getMethod(ApiConstant.articleFashion);
+var responseFashion = await DioService().getMethod(ApiConstant.articleFashion+apiKey);
 log(responseFashion.statusCode.toString());
 if(responseFashion.statusCode == 200){
   responseFashion.data["articles"].forEach((element){
@@ -80,7 +80,7 @@ if(responseFashion.statusCode == 200){
   });
 }
 
-var responseSport = await DioService().getMethod(ApiConstant.articleSport);
+var responseSport = await DioService().getMethod(ApiConstant.articleSport+apiKey);
 log(responseSport.statusCode.toString());
 if(responseSport.statusCode == 200){
   responseSport.data["articles"].forEach((element){
