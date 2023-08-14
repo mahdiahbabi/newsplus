@@ -21,7 +21,7 @@ class _MainScreenState extends State<MainScreen> {
   PageController pageController = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
-      List<Widget> screen = [HomeScreen(), const ArticleInfo()];
+      List<Widget> screen = [HomeScreen(),  ArticleInfo()];
     return  Scaffold(
     bottomNavigationBar: Obx(
       ()=> CurvedNavigationBar(
