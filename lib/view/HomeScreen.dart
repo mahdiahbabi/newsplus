@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:newsplus/component/MyString.dart';
+import 'package:newsplus/controll/ArticleInfoController.dart';
 import 'package:newsplus/view/ArticleInfo.dart';
 import '../component/MyColors.dart';
 import '../controll/homescreencontroller.dart';
@@ -15,6 +16,8 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
   HomeScreenController homeScreenController = Get.put(HomeScreenController());
+  ArticleInfoController articleInfoController =
+      Get.put(ArticleInfoController());
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,6 @@ class HomeScreen extends StatelessWidget {
       () => homeScreenController.loading.value
           ? const SpinKitDualRing(color: Colors.amberAccent)
           : Scaffold(
-              
               appBar: AppBar(
                 title: const Text('mahdi'),
               ),
@@ -51,6 +53,8 @@ class HomeScreen extends StatelessWidget {
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: homePageArticle(
+                                index: index,
+                                listName: homeScreenController.breakingNewslist,
                                 image: homeScreenController
                                     .breakingNewslist.value[index].urlToImage!,
                                 title: homeScreenController
@@ -81,6 +85,8 @@ class HomeScreen extends StatelessWidget {
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: homePageArticle(
+                                index: index,
+                                listName: homeScreenController.healthList,
                                 image: homeScreenController
                                     .healthList.value[index].urlToImage!,
                                 title: homeScreenController
@@ -111,6 +117,8 @@ class HomeScreen extends StatelessWidget {
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: homePageArticle(
+                                index: index,
+                                listName: homeScreenController.educationList,
                                 image: homeScreenController
                                     .educationList.value[index].urlToImage!,
                                 title: homeScreenController
@@ -141,6 +149,8 @@ class HomeScreen extends StatelessWidget {
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: homePageArticle(
+                                  index: index,
+                                  listName: homeScreenController.fashionList,
                                   image: homeScreenController
                                       .fashionList.value[index].urlToImage!,
                                   title: homeScreenController
@@ -170,6 +180,8 @@ class HomeScreen extends StatelessWidget {
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: homePageArticle(
+                                  index: index,
+                                  listName: homeScreenController.sportList,
                                   image: homeScreenController
                                       .sportList.value[index].urlToImage!,
                                   title: homeScreenController
@@ -217,71 +229,80 @@ class HomeScreen extends StatelessWidget {
 
   Widget homePageArticle(
       {String? author,
+      required int index,
+      required RxList listName,
       required String image,
       required String title,
       required String publishedAt}) {
-    return Column(
-      children: [
-        //TODO:و تکست اضافه کردن عکس
+    return GestureDetector(
+      //TODO:  انتقال این بخش در صورت کار نکردن به خود لیست
+      onDoubleTap: () {
+        articleInfoController.ArticleInfo.value = listName.value[index];
+        Get.to(ArticleInfo());
+      },
+      child: Column(
+        children: [
+          //TODO:و تکست اضافه کردن عکس
 
-        CachedNetworkImage(
-          imageUrl: image,
-          imageBuilder: (context, imageProvider) => Stack(
-            children: [
-              Container(
-                height: 230,
-                width: 250,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(35),
-                    image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.cover,
-                    )),
-                foregroundDecoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(35),
-                    gradient: const LinearGradient(
-                        colors: GradientColor.homePageItemGradient,
-                        begin: Alignment.bottomCenter,
-                        end: Alignment.topCenter)),
-              ),
-              Positioned(
-                  bottom: 30,
-                  left: 10,
-                  child: Text(author ?? ' james perterson'))
-            ],
-          ),
-          height: 230,
-          width: 250,
-          placeholder: (context, url) =>
-              const SpinKitFadingCircle(color: Colors.redAccent),
-          errorWidget: (context, url, error) => const Icon(
-            Icons.image_not_supported_sharp,
-            size: 50,
-          ),
-        ),
-
-        Padding(
-          padding: const EdgeInsets.only(
-            left: 8.0,
-          ),
-          child: SizedBox(
-            width: 250,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          CachedNetworkImage(
+            imageUrl: image,
+            imageBuilder: (context, imageProvider) => Stack(
               children: [
-                Text(
-                  title,
-                  overflow: TextOverflow.ellipsis,
+                Container(
+                  height: 230,
+                  width: 250,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(35),
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      )),
+                  foregroundDecoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(35),
+                      gradient: const LinearGradient(
+                          colors: GradientColor.homePageItemGradient,
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter)),
                 ),
-                Text(
-                  publishedAt.substring(0, 10),
-                  overflow: TextOverflow.ellipsis,
-                ),
+                Positioned(
+                    bottom: 30,
+                    left: 10,
+                    child: Text(author ?? ' james perterson'))
               ],
             ),
+            height: 230,
+            width: 250,
+            placeholder: (context, url) =>
+                const SpinKitFadingCircle(color: Colors.redAccent),
+            errorWidget: (context, url, error) => const Icon(
+              Icons.image_not_supported_sharp,
+              size: 50,
+            ),
           ),
-        )
-      ],
+
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 8.0,
+            ),
+            child: SizedBox(
+              width: 250,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(
+                    publishedAt.substring(0, 10),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

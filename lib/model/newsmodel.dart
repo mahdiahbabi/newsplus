@@ -18,15 +18,15 @@ class BreakingNewsModel{
 
 
   BreakingNewsModel({
-    required this.id,
-    required this.name,
-    required this.author,
-    required this.title,
-    required this.description,
-    required this.url,
-    required this.urlToImage,
-    required this.publishedAt,
-    required this.content,
+     this.id,
+     this.name,
+     this.author,
+     this.title,
+     this.description,
+     this.url,
+     this.urlToImage,
+     this.publishedAt,
+     this.content,
   });
 
 
@@ -37,7 +37,7 @@ class BreakingNewsModel{
     id =element["source"]["id"];
     name =element["source"]["name"];
     author =element["author"] ?? 'Alex';
-    title =element["title"];
+    title =element["title"] ?? 'dont have title';
     description =element["description"] ?? 'dont hava description';
     url =element["url"] ?? '';
     urlToImage =element["urlToImage"] ?? 'https://static.digiato.com/digiato/2023/07/image-4-910x600.jpg';
