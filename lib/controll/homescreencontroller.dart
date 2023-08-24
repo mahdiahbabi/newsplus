@@ -8,6 +8,7 @@ import '../service/dioservice.dart';
 
 class HomeScreenController extends GetxController {
   var apiKey = "d5a39792b3fc4d13958a512fd480179c";
+  
   RxList<BreakingNewsModel> breakingNewslist = RxList();
   RxList<BreakingNewsModel> educationList = RxList();
   RxList<BreakingNewsModel> healthList = RxList();

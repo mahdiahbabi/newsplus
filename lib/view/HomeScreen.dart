@@ -8,14 +8,18 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:newsplus/component/MyString.dart';
 import 'package:newsplus/controll/ArticleInfoController.dart';
+import 'package:newsplus/model/newsmodel.dart';
 import 'package:newsplus/view/ArticleInfo.dart';
+import 'package:newsplus/view/ArticleList.dart';
 import '../component/MyColors.dart';
-import '../controll/homescreencontroller.dart';
+import '../controll/HomeScreenController.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
   HomeScreenController homeScreenController = Get.put(HomeScreenController());
+  // ArticleListController articleListController =
+  // Get.put(ArticleListController());
   ArticleInfoController articleInfoController =
       Get.put(ArticleInfoController());
 
@@ -69,6 +73,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       seeMore(
+                          listName: homeScreenController.healthList,
                           category: MyString.homePageHeath,
                           context,
                           theme,
@@ -101,6 +106,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       seeMore(
+                          listName: homeScreenController.educationList,
                           category: MyString.homePageEducation,
                           context,
                           theme,
@@ -133,6 +139,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       seeMore(
+                          listName: homeScreenController.fashionList,
                           category: MyString.homePageFashion,
                           context,
                           theme,
@@ -164,6 +171,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       seeMore(
+                          listName: homeScreenController.sportList,
                           category: MyString.homePageSport,
                           context,
                           theme,
@@ -204,6 +212,7 @@ class HomeScreen extends StatelessWidget {
 
   Padding seeMore(BuildContext context, TextTheme theme,
       {required String seeMore,
+      required RxList<BreakingNewsModel> listName,
       required int catergortyindex,
       required String category}) {
     return Padding(
@@ -214,12 +223,10 @@ class HomeScreen extends StatelessWidget {
           Text(category, style: theme.titleMedium),
           TextButton(
               onPressed: () {
-                // switch (catergortyindex) {
-                //   case 0: Navigator.of(context).push(CupertinoPageRoute(builder: (context) => ,))
 
-                //     break;
-                //   default:
-                // }
+// articleListController.articleListAppBarTittle.value = seeMore;
+                
+               Navigator.of(context).push(CupertinoPageRoute(builder: (context) => ArticleList(list: listName.value.toList(),),));
               },
               child: const Text(MyString.homePageSeeMore))
         ],
@@ -238,12 +245,11 @@ class HomeScreen extends StatelessWidget {
       //TODO:  انتقال این بخش در صورت کار نکردن به خود لیست
       onDoubleTap: () {
         articleInfoController.ArticleInfo.value = listName.value[index];
+
         Get.to(ArticleInfo());
       },
       child: Column(
         children: [
-          //TODO:و تکست اضافه کردن عکس
-
           CachedNetworkImage(
             imageUrl: image,
             imageBuilder: (context, imageProvider) => Stack(
@@ -279,7 +285,6 @@ class HomeScreen extends StatelessWidget {
               size: 50,
             ),
           ),
-
           Padding(
             padding: const EdgeInsets.only(
               left: 8.0,

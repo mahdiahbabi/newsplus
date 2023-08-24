@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:newsplus/component/widget.dart';
 import 'package:newsplus/controll/ArticleInfoController.dart';
-import 'package:newsplus/controll/homescreencontroller.dart';
+import 'package:newsplus/controll/HomeScreenController.dart';
 
 class ArticleInfo extends StatelessWidget {
   ArticleInfo({super.key});
