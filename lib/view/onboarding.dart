@@ -11,7 +11,6 @@ class Onboarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      TextTheme theme = Theme.of(context).textTheme;
     return SafeArea(
       child: Scaffold(
         body: Container(

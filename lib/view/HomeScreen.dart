@@ -1,7 +1,6 @@
 // ignore_for_file: must_be_immutable, invalid_use_of_protected_member
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -223,10 +222,13 @@ class HomeScreen extends StatelessWidget {
           Text(category, style: theme.titleMedium),
           TextButton(
               onPressed: () {
-
 // articleListController.articleListAppBarTittle.value = seeMore;
-                
-               Navigator.of(context).push(CupertinoPageRoute(builder: (context) => ArticleList(list: listName.value.toList(),),));
+
+                Navigator.of(context).push(CupertinoPageRoute(
+                  builder: (context) => ArticleList(
+                    list: listName.value.toList(),
+                  ),
+                ));
               },
               child: const Text(MyString.homePageSeeMore))
         ],

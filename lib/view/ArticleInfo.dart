@@ -1,11 +1,10 @@
-// ignore_for_file: invalid_use_of_protected_member
+// ignore_for_file: invalid_use_of_protected_member, must_be_immutable
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:newsplus/component/widget.dart';
 import 'package:newsplus/controll/ArticleInfoController.dart';
-import 'package:newsplus/controll/HomeScreenController.dart';
 
 class ArticleInfo extends StatelessWidget {
   ArticleInfo({super.key});
