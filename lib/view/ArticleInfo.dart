@@ -3,18 +3,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 import 'package:newsplus/component/widget.dart';
 import 'package:newsplus/controll/ArticleInfoController.dart';
+import 'package:newsplus/model/hiveModel.dart';
 
 class ArticleInfo extends StatelessWidget {
-  ArticleInfo({super.key});
-  ArticleInfoController articleInfoController = Get.put(ArticleInfoController());
+  ArticleInfo({
+    super.key,
+  });
+final hiveArticle = HiveModel();
+  ArticleInfoController articleInfoController =
+      Get.put(ArticleInfoController());
+
   @override
   Widget build(BuildContext context) {
+    final articleBox = Hive.box<HiveModel>('mybox');
     TextTheme theme = Theme.of(context).textTheme;
     return Scaffold(
       body: Obx(
-        ()=> SizedBox(
+        () => SizedBox(
           width: double.infinity,
           height: double.infinity,
           child: Stack(
@@ -81,17 +89,44 @@ class ArticleInfo extends StatelessWidget {
                           Text(
                               articleInfoController.ArticleInfo.value.content!),
                           Text(
-                             articleInfoController.ArticleInfo.value.content!),
+                              articleInfoController.ArticleInfo.value.content!),
                           Text(
                               articleInfoController.ArticleInfo.value.content!),
                           Text(
-                             articleInfoController.ArticleInfo.value.content!),
+                              articleInfoController.ArticleInfo.value.content!),
                           const SizedBox(
                             height: 25,
                           ),
                           IconButton(
-                              onPressed: () {},
-                              icon: const Icon(CupertinoIcons.bookmark))
+                              onPressed: () {
+                                
+                                hiveArticle.author = articleInfoController
+                                        .ArticleInfo.value.author ??
+                                    'cristin';
+                                hiveArticle.content = articleInfoController
+                                        .ArticleInfo.value.content ??
+                                    'this niews is emputy .  this niews is emputy . this niews is emputy .this niews is emputy .';
+                                hiveArticle.name = articleInfoController
+                                        .ArticleInfo.value.name ??
+                                    'mahdi';
+                                hiveArticle.description = articleInfoController
+                                        .ArticleInfo.value.author ??
+                                    ' this niews is emputy and you see default text from developer';
+                                hiveArticle.title = articleInfoController
+                                        .ArticleInfo.value.title ??
+                                    'cristin';
+                                hiveArticle.urlToImage = articleInfoController
+                                        .ArticleInfo.value.urlToImage ??
+                                    'https://avatars.githubusercontent.com/u/81352867?v=4?s=100';
+
+                                if (hiveArticle.isInBox) {
+                                  articleBox.delete(hiveArticle);
+
+                                } else {
+                                  articleBox.add(hiveArticle);
+                                }
+                              },
+                              icon: const Icon( CupertinoIcons.bookmark))
                         ],
                       ),
                     ),

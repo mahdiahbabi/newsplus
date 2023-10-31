@@ -1,10 +1,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:newsplus/view/MainScreen.dart';
 
+import 'model/hiveModel.dart';
 
-void main() {
+
+void main() async{
+  await Hive.initFlutter();
+  Hive.registerAdapter(HiveModelAdapter());
+  var faveritArticle =  await Hive.openBox<HiveModel>('myBox');
   runApp(const MyApp());
 }
 

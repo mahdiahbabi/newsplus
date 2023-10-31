@@ -34,14 +34,14 @@ class BreakingNewsModel{
   BreakingNewsModel.fromjson(Map<String, dynamic> element){
 
     
-    id =element["source"]["id"];
-    name =element["source"]["name"];
+    id =element["source"]["id"] ?? 'cnn';
+    name =element["source"]["name"] ?? 'cnn.com';
     author =element["author"] ?? 'Alex';
     title =element["title"] ?? 'dont have title';
     description =element["description"] ?? 'dont hava description';
     url =element["url"] ?? '';
     urlToImage =element["urlToImage"] ?? 'https://static.digiato.com/digiato/2023/07/image-4-910x600.jpg';
-    publishedAt =element["publishedAt"];
+    publishedAt =element["publishedAt"] ?? '2023/07/14 ';
     content =element["content"] ?? 'dont hava description';
   }
 
