@@ -12,7 +12,7 @@ import '../model/hiveModel.dart';
 import 'ArticleInfo.dart';
 HiveModel hiveArticle = HiveModel();
 class BookMark extends StatefulWidget {
-   BookMark({super.key});
+   const BookMark({super.key});
 
   @override
   State<BookMark> createState() => _BookMarkState();
@@ -53,7 +53,7 @@ final articleBox = Hive.box<HiveModel>('mybox');
       required String publishedAt}) {
         final articleBox = Hive.box<HiveModel>('mybox');
      GestureDetector(
-      //TODO:  انتقال این بخش در صورت کار نکردن به خود لیست
+   
       onDoubleTap: () {
         
         Get.to(ArticleInfo());
@@ -102,7 +102,7 @@ setState(() {
 
 
 
-                              }, icon: Icon(CupertinoIcons.bookmark_fill))
+                              }, icon: const Icon(CupertinoIcons.bookmark_fill))
                         
                             ],
                           ),

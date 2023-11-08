@@ -1,11 +1,9 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:newsplus/model/newsmodel.dart';
 import 'package:newsplus/view/ArticleInfo.dart';
 
@@ -28,7 +26,7 @@ class ArticleList extends StatelessWidget {
         height: double.infinity,
         child: ListView.builder(
           itemCount: list.length,
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
             return GestureDetector(

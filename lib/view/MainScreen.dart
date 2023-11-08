@@ -1,7 +1,6 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:newsplus/view/HomeScreen.dart';
@@ -10,7 +9,7 @@ import 'package:newsplus/view/Profile.dart';
 import 'BookMark.dart';
 
 class MainScreen extends StatefulWidget {
-  MainScreen({super.key});
+  const MainScreen({super.key});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
