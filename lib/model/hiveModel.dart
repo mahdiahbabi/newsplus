@@ -19,6 +19,8 @@ class HiveModel extends HiveObject{
   String  publishedAt = '';
   @HiveField(7)
   String  content = '';
+  // @HiveField(8)
+  // String url = '';
 
 
 }

@@ -1,5 +1,7 @@
 // ignore_for_file: invalid_use_of_protected_member, must_be_immutable
 
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,12 +14,13 @@ class ArticleInfo extends StatelessWidget {
   ArticleInfo({
     super.key,
   });
-final hiveArticle = HiveModel();
+  final hiveArticle = HiveModel();
   ArticleInfoController articleInfoController =
       Get.put(ArticleInfoController());
 
   @override
   Widget build(BuildContext context) {
+    
     final articleBox = Hive.box<HiveModel>('mybox');
     TextTheme theme = Theme.of(context).textTheme;
     return Scaffold(
@@ -76,6 +79,7 @@ final hiveArticle = HiveModel();
                               const SizedBox(
                                 width: 10,
                               ),
+                            
                               Text(articleInfoController
                                   .ArticleInfo.value.publishedAt!
                                   .substring(0, 10)),
@@ -99,7 +103,6 @@ final hiveArticle = HiveModel();
                           ),
                           IconButton(
                               onPressed: () {
-                                
                                 hiveArticle.author = articleInfoController
                                         .ArticleInfo.value.author ??
                                     'cristin';
@@ -118,15 +121,20 @@ final hiveArticle = HiveModel();
                                 hiveArticle.urlToImage = articleInfoController
                                         .ArticleInfo.value.urlToImage ??
                                     'https://avatars.githubusercontent.com/u/81352867?v=4?s=100';
+                                    hiveArticle.publishedAt =articleInfoController.ArticleInfo.value.publishedAt ?? '2024-01-01';
+
+                                // hiveArticle.url = articleInfoController
+                                //         .ArticleInfo.value.url ??
+                                //     'https://avatars.githubusercontent.com/u/81352867?v=4?s=100';
 
                                 if (hiveArticle.isInBox) {
-                                  articleBox.delete(hiveArticle);
-
+                                 
+                                  articleBox.delete(hiveArticle.key);
                                 } else {
                                   articleBox.add(hiveArticle);
                                 }
                               },
-                              icon: const Icon( CupertinoIcons.bookmark))
+                              icon:  Icon(hiveArticle.isInBox ?  CupertinoIcons.bookmark_fill : CupertinoIcons.bookmark))
                         ],
                       ),
                     ),
