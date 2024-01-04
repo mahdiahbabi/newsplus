@@ -9,7 +9,7 @@ import '../model/newsmodel.dart';
 import '../service/dioservice.dart';
 
 class HomeScreenController extends GetxController {
-  var apiKey = "d5a39792b3fc4d13958a512fd480179c";
+  var apiKey = "7d3d9c655cc4463d98568e950114f0ee";
   
   RxList<BreakingNewsModel> breakingNewslist = RxList();
   RxList<BreakingNewsModel> educationList = RxList();

@@ -13,6 +13,7 @@ class MyString {
   static const homePageFashion = 'Fashion';
   static const homePageEducation = 'Education';
   static const homePagebusiness = 'Business';
+  static const bookmark = 'No Book Mark yet';
 
   static const onbordingDescription = 'From Politics to Entertainment: Your One-Stop Source for Comprehensive Coverage of the Latest News and Developments Across the Glob will be right on your hand.';
 }

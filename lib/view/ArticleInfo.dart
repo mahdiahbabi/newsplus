@@ -20,7 +20,6 @@ class ArticleInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     final articleBox = Hive.box<HiveModel>('mybox');
     TextTheme theme = Theme.of(context).textTheme;
     return Scaffold(
@@ -61,7 +60,7 @@ class ArticleInfo extends StatelessWidget {
                         children: [
                           Text(
                             articleInfoController.ArticleInfo.value.title!,
-                            style: theme.titleLarge,
+                            style: theme.titleSmall!.copyWith(fontWeight: FontWeight.w300),
                           ),
                           Row(
                             children: [
@@ -74,12 +73,16 @@ class ArticleInfo extends StatelessWidget {
                               const SizedBox(
                                 width: 10,
                               ),
-                              Text(articleInfoController
-                                  .ArticleInfo.value.author!),
+                              Expanded(
+                                child: SizedBox(
+                                  
+                                  child: Text(articleInfoController
+                                      .ArticleInfo.value.author!, overflow: TextOverflow.ellipsis,),
+                                ),
+                              ),
                               const SizedBox(
                                 width: 10,
                               ),
-                            
                               Text(articleInfoController
                                   .ArticleInfo.value.publishedAt!
                                   .substring(0, 10)),
@@ -121,20 +124,23 @@ class ArticleInfo extends StatelessWidget {
                                 hiveArticle.urlToImage = articleInfoController
                                         .ArticleInfo.value.urlToImage ??
                                     'https://avatars.githubusercontent.com/u/81352867?v=4?s=100';
-                                    hiveArticle.publishedAt =articleInfoController.ArticleInfo.value.publishedAt ?? '2024-01-01';
+                                hiveArticle.publishedAt = articleInfoController
+                                        .ArticleInfo.value.publishedAt ??
+                                    '2024-01-01';
 
                                 // hiveArticle.url = articleInfoController
                                 //         .ArticleInfo.value.url ??
                                 //     'https://avatars.githubusercontent.com/u/81352867?v=4?s=100';
 
                                 if (hiveArticle.isInBox) {
-                                 
                                   articleBox.delete(hiveArticle.key);
                                 } else {
                                   articleBox.add(hiveArticle);
                                 }
                               },
-                              icon:  Icon(hiveArticle.isInBox ?  CupertinoIcons.bookmark_fill : CupertinoIcons.bookmark))
+                              icon: Icon(hiveArticle.isInBox
+                                  ? CupertinoIcons.bookmark_fill
+                                  : CupertinoIcons.bookmark))
                         ],
                       ),
                     ),
