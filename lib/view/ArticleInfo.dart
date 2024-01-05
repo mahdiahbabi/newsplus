@@ -1,6 +1,4 @@
-// ignore_for_file: invalid_use_of_protected_member, must_be_immutable
-
-import 'dart:developer';
+// ignore_for_file: invalid_use_of_protected_member, must_be_immutable, iterable_contains_unrelated_type
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,17 +8,28 @@ import 'package:newsplus/component/widget.dart';
 import 'package:newsplus/controll/ArticleInfoController.dart';
 import 'package:newsplus/model/hiveModel.dart';
 
-class ArticleInfo extends StatelessWidget {
-  ArticleInfo({
+class ArticleInfo extends StatefulWidget {
+  const ArticleInfo({
     super.key,
+    
   });
+ 
+  @override
+  State<ArticleInfo> createState() => _ArticleInfoState();
+}
+
+class _ArticleInfoState extends State<ArticleInfo> {
   final hiveArticle = HiveModel();
+
   ArticleInfoController articleInfoController =
       Get.put(ArticleInfoController());
 
   @override
+  bool ms  =false ;
   Widget build(BuildContext context) {
+   
     final articleBox = Hive.box<HiveModel>('mybox');
+      ms =articleBox.values.where((element) => element.name == hiveArticle.name).isNotEmpty;
     TextTheme theme = Theme.of(context).textTheme;
     return Scaffold(
       body: Obx(
@@ -60,7 +69,8 @@ class ArticleInfo extends StatelessWidget {
                         children: [
                           Text(
                             articleInfoController.ArticleInfo.value.title!,
-                            style: theme.titleSmall!.copyWith(fontWeight: FontWeight.w300),
+                            style: theme.titleSmall!
+                                .copyWith(fontWeight: FontWeight.w300),
                           ),
                           Row(
                             children: [
@@ -75,9 +85,11 @@ class ArticleInfo extends StatelessWidget {
                               ),
                               Expanded(
                                 child: SizedBox(
-                                  
-                                  child: Text(articleInfoController
-                                      .ArticleInfo.value.author!, overflow: TextOverflow.ellipsis,),
+                                  child: Text(
+                                    articleInfoController
+                                        .ArticleInfo.value.author!,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
                               ),
                               const SizedBox(
@@ -105,42 +117,52 @@ class ArticleInfo extends StatelessWidget {
                             height: 25,
                           ),
                           IconButton(
-                              onPressed: () {
-                                hiveArticle.author = articleInfoController
-                                        .ArticleInfo.value.author ??
-                                    'cristin';
-                                hiveArticle.content = articleInfoController
-                                        .ArticleInfo.value.content ??
-                                    'this niews is emputy .  this niews is emputy . this niews is emputy .this niews is emputy .';
-                                hiveArticle.name = articleInfoController
-                                        .ArticleInfo.value.name ??
-                                    'mahdi';
-                                hiveArticle.description = articleInfoController
-                                        .ArticleInfo.value.author ??
-                                    ' this niews is emputy and you see default text from developer';
-                                hiveArticle.title = articleInfoController
-                                        .ArticleInfo.value.title ??
-                                    'cristin';
-                                hiveArticle.urlToImage = articleInfoController
-                                        .ArticleInfo.value.urlToImage ??
-                                    'https://avatars.githubusercontent.com/u/81352867?v=4?s=100';
-                                hiveArticle.publishedAt = articleInfoController
-                                        .ArticleInfo.value.publishedAt ??
-                                    '2024-01-01';
+                            onPressed: () {
+                              setState(
+                                () {
+                                  hiveArticle.author = articleInfoController
+                                          .ArticleInfo.value.author ??
+                                      'cristin';
+                                  hiveArticle.content = articleInfoController
+                                          .ArticleInfo.value.content ??
+                                      'this niews is emputy .  this niews is emputy . this niews is emputy .this niews is emputy .';
+                                  hiveArticle.name = articleInfoController
+                                          .ArticleInfo.value.name ??
+                                      'mahdi';
+                                  hiveArticle
+                                      .description = articleInfoController
+                                          .ArticleInfo.value.author ??
+                                      ' this niews is emputy and you see default text from developer';
+                                  hiveArticle.title = articleInfoController
+                                          .ArticleInfo.value.title ??
+                                      'cristin';
+                                  hiveArticle.urlToImage = articleInfoController
+                                          .ArticleInfo.value.urlToImage ??
+                                      'https://avatars.githubusercontent.com/u/81352867?v=4?s=100';
+                                  hiveArticle.publishedAt =
+                                      articleInfoController
+                                              .ArticleInfo.value.publishedAt ??
+                                          '2024-01-01';
 
-                                // hiveArticle.url = articleInfoController
-                                //         .ArticleInfo.value.url ??
-                                //     'https://avatars.githubusercontent.com/u/81352867?v=4?s=100';
+                                  // hiveArticle.url = articleInfoController
+                                  //         .ArticleInfo.value.url ??
+                                  //     'https://avatars.githubusercontent.com/u/81352867?v=4?s=100';
 
-                                if (hiveArticle.isInBox) {
-                                  articleBox.delete(hiveArticle.key);
-                                } else {
-                                  articleBox.add(hiveArticle);
-                                }
-                              },
-                              icon: Icon(hiveArticle.isInBox
-                                  ? CupertinoIcons.bookmark_fill
-                                  : CupertinoIcons.bookmark))
+                                  if (hiveArticle.isInBox) {
+                                    articleBox.delete(hiveArticle.name);
+                                  }else {
+                                    articleBox.put(hiveArticle.name,hiveArticle);
+                                    
+                                  }
+                                },
+                              );
+                                 ms =articleBox.values.where((element) => element.name == hiveArticle.name).isNotEmpty;
+                            },
+                            icon: Icon(
+                            ms 
+                                ? CupertinoIcons.bookmark_fill
+                                : CupertinoIcons.bookmark),
+                          ),
                         ],
                       ),
                     ),

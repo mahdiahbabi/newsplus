@@ -46,10 +46,10 @@ class _BookMarkState extends State<BookMark> {
                   },
                 ),
               )
-            :  SizedBox(
+            : SizedBox(
                 child: Center(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Icon(
                       CupertinoIcons.bookmark,
@@ -58,7 +58,10 @@ class _BookMarkState extends State<BookMark> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(MyString.bookmark, style: Theme.of(context).textTheme.bodyLarge,),
+                    Text(
+                      MyString.bookmark,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
                   ],
                 )),
               ));
@@ -108,12 +111,10 @@ class _BookMarkState extends State<BookMark> {
                     ),
                     const SizedBox(height: 18),
                     Text(
-                      
                       item.author ?? 'justin potter',
                       maxLines: 1,
                       style: Theme.of(context).textTheme.titleSmall!.copyWith(
                             fontSize: 18,
-                            
                           ),
                     ),
                     const SizedBox(height: 18),
